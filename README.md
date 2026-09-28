@@ -1,92 +1,238 @@
-<div align="center">
-  <img width="200" src="static/favicon/android-chrome-512x512.png" alt="Wall Street Trader logo">
+# 💰 Finance — Full-Stack Web Application
 
-# [Finance: Full Stack Web App using Flask and SQL](http://wallstreettrader.app/)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://flask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com/)
-![Security Headers](https://img.shields.io/security-headers?url=http%3A%2F%2Fflask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com%2F)
-[![Build Status](https://travis-ci.org/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL.svg?branch=master)](https://travis-ci.org/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/323b83dec4c44b78bde6a4b2aa3477ec)](https://www.codacy.com/gh/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL&amp;utm_campaign=Badge_Grade)
-[![Updates](https://pyup.io/repos/github/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/shield.svg)](https://pyup.io/repos/github/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/)
-[![Python 3](https://pyup.io/repos/github/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/python-3-shield.svg)](https://pyup.io/repos/github/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/)
-</div>
+A full-stack personal finance and stock-trading web application built with **Python, Flask, SQL, HTML, CSS, and JavaScript**.
 
-## Homework from [Harvard's Introduction to Computer Science CS50 hosted on eDX](https://www.edx.org/course/cs50s-introduction-to-computer-science) 🎓 [Web Track](https://cs50.harvard.edu/x/2020/tracks/web/) - [Finance](https://cs50.harvard.edu/x/2020/tracks/web/finance/)
+The application allows users to create accounts, view stock information, buy and sell shares, track their portfolio, and review transaction history through a web-based interface.
 
+## 🚀 Features
 
-## 🚀 Getting Started
-### To run this project on your system:
--   Ensure that `python3` and `python3-pip` are installed on your system
--   In your terminal, navigate to the root project directory and run the following commands
--   Activate the virtual environment
-```
-$ pipenv shell
-```
--   Install the dependencies
-```
-$ pipenv install -r requirements.txt
-```
--   You'll need to register for an API key in order to be able to query IEX’s data
-	-   [Register](iexcloud.io/cloud-login#/register/) for an account
-	-   Enter your email address and a password, and click “Create account”
-	-   On the next page, scroll down to choose the Start (free) plan
-	-   Once you’ve confirmed your account via a confirmation email, sign in to iexcloud.io
-	-   Click API Tokens
-	-   Copy the key that appears under the Token column (it should begin with pk_) into the `<value>` in the next step
--   Create a .env file and paste the following into it: `API_KEY=<value>`
--   To start the web server, execute (without debugging):
-```
-$ python application.py 
-```
--   Alternatively, execute (with debugging):
-```
-$ export FLASK_APP=application.py
-$ flask run
-```
--   Lastly, create a SQL database named `finances.db`
--   To initialize the SQL database within application.py, add `db.create_all()` below `Initialize Schemas`. Once the code runs and the you've verified the database exists, remove `db.create_all()`
--   To initialize the SQL database in the python shell, execute:
-```
-$ python
-$ from application import db
-$ db.create_all()
-```
--   To initialize the database with SQL command-line arguemnts (using MySQL syntax) run each `CREATE TABLE` command (one at a time):
-```
-CREATE TABLE users (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	username VARCHAR(50) UNIQUE, 
-	hash VARCHAR(200) NOT NULL, 
-	cash INTEGER
-);
-CREATE TABLE portfolio (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	user_id INTEGER, 
-	symbol VARCHAR(5), 
-	current_shares INTEGER
-);
-CREATE TABLE bought (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	buyer_id INTEGER, 
-	time VARCHAR(100), 
-	symbol VARCHAR(5), 
-	shares_bought INTEGER, 
-	price_bought FLOAT
-);
-CREATE TABLE sold (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	seller_id INTEGER, 
-	time VARCHAR(100), 
-	symbol VARCHAR(5), 
-	shares_sold INTEGER, 
-	price_sold FLOAT
-);
+* 🔐 User registration and authentication
+* 💵 Portfolio and cash balance management
+* 📈 Stock price lookup
+* 🛒 Buy and sell stocks
+* 📊 Portfolio tracking
+* 🧾 Transaction history
+* 🗄️ SQL-based data persistence
+* 🎨 Responsive web interface
+* ⚠️ Error handling and validation
+* 🧪 Automated application tests
+
+## 🛠️ Tech Stack
+
+### Backend
+
+* Python
+* Flask
+* Flask-SQLAlchemy
+* SQL
+* Jinja2
+
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+* Jinja templates
+* SVG-based illustrations
+
+### Development & Testing
+
+* Pipenv
+* Pytest
+* GitHub Actions
+* Docker-compatible project structure
+
+## 🏗️ Project Structure
+
+```text
+finance-full-stack-web-app/
+│
+├── application.py          # Flask application
+├── helpers.py              # Helper functions
+├── Pipfile                # Python dependencies
+├── Pipfile.lock
+├── README.md
+│
+├── templates/              # HTML/Jinja templates
+│   ├── layout.html
+│   ├── index.html
+│   ├── landing.html
+│   ├── login.html
+│   ├── register.html
+│   ├── buy.html
+│   ├── sell.html
+│   ├── bought.html
+│   ├── sold.html
+│   ├── history.html
+│   └── ...
+│
+├── static/
+│   ├── styles.css
+│   ├── index.js
+│   ├── images/
+│   └── favicon/
+│
+├── tests/
+│   ├── test_app.py
+│   └── test_views.py
+│
+└── .github/
+    └── workflows/
 ```
 
-## 📣 Attribution
--   Stock prices pulled from [IEX Stock Quote API](https://iexcloud.io/docs/api/#quote)
--   Hat icon made by [Alice Noir](https://thenounproject.com/AliceNoir/) from [the Noun Project](https://thenounproject.com/icon/pirate-hat-4121754/)
--   Feather icon made by [Jacopo Mencacci](https://thenounproject.com/jacopoPaper/) from [the Noun Project](https://thenounproject.com/icon/feather-10683/)
--   Illustrations by [Freepik Storyset](https://storyset.com/people/rafiki)
+## ⚙️ Getting Started
 
-## 🔒 License
-Copyright Notice and Statement: currently not offering any license. Permission only to view and download. Refer to [choose a license](https://choosealicense.com/no-permission/) for more info.
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/adityaasinghhh/finance-full-stack-web-app.git
+cd finance-full-stack-web-app
+```
+
+### 2. Install Python dependencies
+
+Make sure Python and pip are installed.
+
+Using Pipenv:
+
+```bash
+pip install pipenv
+pipenv install
+```
+
+Activate the virtual environment:
+
+```bash
+pipenv shell
+```
+
+### 3. Configure the API key
+
+The application uses a stock-market API to retrieve stock information.
+
+Create a `.env` file in the project root:
+
+```env
+API_KEY=your_api_key_here
+```
+
+**Never commit your `.env` file or API credentials to GitHub.**
+
+### 4. Initialize the database
+
+The application uses SQLAlchemy for database interaction.
+
+Start Python:
+
+```bash
+python
+```
+
+Then:
+
+```python
+from application import db
+db.create_all()
+```
+
+Exit Python:
+
+```python
+exit()
+```
+
+### 5. Run the application
+
+```bash
+python application.py
+```
+
+The application will start locally and can be accessed through the URL shown by Flask.
+
+Alternatively:
+
+```bash
+flask run
+```
+
+## 🗄️ Database Design
+
+The application maintains information related to users, portfolios, purchases, and sales.
+
+Conceptually, the database contains:
+
+```text
+Users
+  │
+  ├── Portfolio
+  │
+  ├── Bought Transactions
+  │
+  └── Sold Transactions
+```
+
+This allows the application to maintain each user's holdings and transaction history independently.
+
+## 🧪 Testing
+
+The project includes automated tests for application behavior and views.
+
+Run the test suite with:
+
+```bash
+pytest
+```
+
+## 🔐 Security Considerations
+
+The application includes authentication and server-side validation for financial transactions.
+
+For local development:
+
+* Store API keys in environment variables.
+* Never commit `.env` files.
+* Use strong passwords when testing authentication.
+* Use a production-grade database and secret-management solution before deploying publicly.
+
+## 📚 What I Learned
+
+This project provided hands-on experience with:
+
+* Building a full-stack application using Flask
+* Designing and interacting with SQL databases
+* Implementing authentication and sessions
+* Creating REST-style application routes
+* Connecting a backend to external APIs
+* Building dynamic pages with Jinja2
+* Handling financial transaction workflows
+* Writing automated tests
+* Structuring a maintainable web application
+
+## 🔮 Future Improvements
+
+Potential improvements include:
+
+* Modern authentication with OAuth/JWT
+* Improved portfolio analytics and visualizations
+* Real-time stock-price updates
+* More advanced transaction reporting
+* REST API documentation
+* PostgreSQL support for production deployment
+* Docker-based deployment
+* Improved responsive UI
+* Role-based access control
+* Comprehensive API and integration tests
+
+## 👨‍💻 Author
+
+**Aditya Singh**
+
+Computer Science Engineering
+
+GitHub: [@adityaasinghhh](https://github.com/adityaasinghhh)
+
+---
+
+## 📌 Disclaimer
+
+This project is intended for **educational and demonstration purposes**. Stock information and financial functionality should not be considered financial advice.
